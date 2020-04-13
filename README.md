@@ -10,12 +10,7 @@ output:
   pdf_document: default
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE, warning = FALSE, fig.asp = 0.5)
-library(kableExtra)
-library(ggthemes)
-source("covid19.R")
-```
+
 
 _Attention : Ce travail se base sur un [unique jeu de données](https://ocgptweb.azurewebsites.net/CSVDownload), et les résultats n'ont pas été vérifiés par un tiers. Les sources sont disponibles [ici](https://github.com/juliengossa/covid19)._
 
@@ -48,10 +43,116 @@ En calculant le délais entre la date du premier cas de décès confirmé et la 
 
 __Nombre de jours entre la date du premier décès confirmé, et la mise en œuvre de différentes mesures__
 
-```{r table}
-covid.first_death.table %>% 
-  kable(col.names = c("Pays", labels[c(2:4,6:7)]))
-```
+<table>
+ <thead>
+  <tr>
+   <th style="text-align:left;"> Pays </th>
+   <th style="text-align:right;"> Annulations d'évènements </th>
+   <th style="text-align:right;"> Fermeture des écoles </th>
+   <th style="text-align:right;"> Fermeture des lieux de travail </th>
+   <th style="text-align:right;"> Restriction des déplacements </th>
+   <th style="text-align:right;"> Restriction des voyages </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> Austria </td>
+   <td style="text-align:right;"> -2 </td>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> -4 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Belgium </td>
+   <td style="text-align:right;"> 2 </td>
+   <td style="text-align:right;"> 2 </td>
+   <td style="text-align:right;"> 2 </td>
+   <td style="text-align:right;"> 6 </td>
+   <td style="text-align:right;"> 5 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Czech Republic </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> France </td>
+   <td style="text-align:right;"> 14 </td>
+   <td style="text-align:right;"> 30 </td>
+   <td style="text-align:right;"> 31 </td>
+   <td style="text-align:right;"> 31 </td>
+   <td style="text-align:right;"> 32 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Germany </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 6 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> 12 </td>
+   <td style="text-align:right;"> 6 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Greece </td>
+   <td style="text-align:right;"> -12 </td>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> 11 </td>
+   <td style="text-align:right;"> NA </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Hungary </td>
+   <td style="text-align:right;"> -5 </td>
+   <td style="text-align:right;"> -5 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> 12 </td>
+   <td style="text-align:right;"> -7 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Italy </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 10 </td>
+   <td style="text-align:right;"> 16 </td>
+   <td style="text-align:right;"> 15 </td>
+   <td style="text-align:right;"> -24 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Poland </td>
+   <td style="text-align:right;"> -3 </td>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 18 </td>
+   <td style="text-align:right;"> 2 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Portugal </td>
+   <td style="text-align:right;"> -6 </td>
+   <td style="text-align:right;"> -5 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> -8 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Spain </td>
+   <td style="text-align:right;"> 5 </td>
+   <td style="text-align:right;"> 11 </td>
+   <td style="text-align:right;"> 29 </td>
+   <td style="text-align:right;"> 9 </td>
+   <td style="text-align:right;"> 5 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> United Kingdom </td>
+   <td style="text-align:right;"> 15 </td>
+   <td style="text-align:right;"> 17 </td>
+   <td style="text-align:right;"> 18 </td>
+   <td style="text-align:right;"> 17 </td>
+   <td style="text-align:right;"> NA </td>
+  </tr>
+</tbody>
+</table>
 
 
 On retrouve alors des données très similaires, mais pas tout à fait identiques. Notamment :
@@ -70,10 +171,116 @@ Le point de référence généralement utilisé pour étudier la pandémie n'est
 
 __Nombre de jours entre la date des 10 premiers cas confirmés, et différentes mesures__
 
-```{r table.cas}
-covid.ten_cases.table %>% 
-  kable(col.names = c("Pays", labels[c(2:4,6:7)]))
-```
+<table>
+ <thead>
+  <tr>
+   <th style="text-align:left;"> Pays </th>
+   <th style="text-align:right;"> Annulations d'évènements </th>
+   <th style="text-align:right;"> Fermeture des écoles </th>
+   <th style="text-align:right;"> Fermeture des lieux de travail </th>
+   <th style="text-align:right;"> Restriction des déplacements </th>
+   <th style="text-align:right;"> Restriction des voyages </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> Austria </td>
+   <td style="text-align:right;"> 10 </td>
+   <td style="text-align:right;"> 11 </td>
+   <td style="text-align:right;"> 15 </td>
+   <td style="text-align:right;"> 15 </td>
+   <td style="text-align:right;"> 8 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Belgium </td>
+   <td style="text-align:right;"> 10 </td>
+   <td style="text-align:right;"> 10 </td>
+   <td style="text-align:right;"> 10 </td>
+   <td style="text-align:right;"> 14 </td>
+   <td style="text-align:right;"> 13 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Czech Republic </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> France </td>
+   <td style="text-align:right;"> 21 </td>
+   <td style="text-align:right;"> 37 </td>
+   <td style="text-align:right;"> 38 </td>
+   <td style="text-align:right;"> 38 </td>
+   <td style="text-align:right;"> 39 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Germany </td>
+   <td style="text-align:right;"> 35 </td>
+   <td style="text-align:right;"> 41 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> 47 </td>
+   <td style="text-align:right;"> 41 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Greece </td>
+   <td style="text-align:right;"> -5 </td>
+   <td style="text-align:right;"> 6 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> 18 </td>
+   <td style="text-align:right;"> NA </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Hungary </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> 17 </td>
+   <td style="text-align:right;"> -2 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Italy </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 11 </td>
+   <td style="text-align:right;"> 17 </td>
+   <td style="text-align:right;"> 16 </td>
+   <td style="text-align:right;"> -23 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Poland </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> 4 </td>
+   <td style="text-align:right;"> 22 </td>
+   <td style="text-align:right;"> 6 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Portugal </td>
+   <td style="text-align:right;"> 5 </td>
+   <td style="text-align:right;"> 6 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> 3 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Spain </td>
+   <td style="text-align:right;"> 12 </td>
+   <td style="text-align:right;"> 18 </td>
+   <td style="text-align:right;"> 36 </td>
+   <td style="text-align:right;"> 16 </td>
+   <td style="text-align:right;"> 12 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> United Kingdom </td>
+   <td style="text-align:right;"> 26 </td>
+   <td style="text-align:right;"> 28 </td>
+   <td style="text-align:right;"> 29 </td>
+   <td style="text-align:right;"> 28 </td>
+   <td style="text-align:right;"> NA </td>
+  </tr>
+</tbody>
+</table>
 
 Ce changement de point de référence modifie légèrement les conclusions de la table, puisque la France apparait alors comme plus réactive que l'Allemagne.
 
@@ -86,45 +293,13 @@ Pour étendre les indicateurs, on peut ajouter les mesures suivantes :
 
 Lire les données en incluant plus de pays sera difficile sous forme de table, et c'est pourquoi il est nécessaire de proposer une représentation graphique.
 
-```{r ext.death }
-covid.first_death %>%
-  mutate(key = fct_rev(key)) %>%
-ggplot(aes(x=key,y=Days.since.ref)) + 
-  geom_boxplot() +
-  geom_point( aes(fill=CountryName),
-    data = filter(covid.first_death,CountryName %in% c("France","Germany","Italy")),
-    shape=23, size=5) +
-  coord_flip() +
-  scale_x_discrete(labels = rev(labels)) +
-  xlab("Mesure") + ylab("Délais depuis le premier décès") +
-  ggtitle("Nombre de jours entre le premier décès confirmé\net différentes mesures") +
-  theme_excel_new() +
-  theme(plot.title = element_text(hjust = 0))  +
-  guides(shape="legend")
-
-```
+![](covid19_files/figure-html/ext.death-1.png)<!-- -->
 
 Exemple de lecture : « _Parmi les pays ayant mis en œuvre une campagne d'information, le plus réactif l'a fait 92 jours avant le premier décès confirmé, et le moins réactif 16 jours après. La moitié des pays l'ont fait entre 43 et 10 jours avant, et la médiane est à 23 jours avant. La France l'a fait 22 jours avant._ ».
 
 Ce graphique permet de constater que la France est parmi les pays présentant les plus grands délais entre le premier cas de décès confirmé et la prise de mesures, hormis en ce qui concerne la campagne d'information.
 
-```{r ext.tencases }
-covid.ten_cases %>%
-  mutate(key = fct_rev(key)) %>%
-ggplot(aes(x=key,y=Days.since.ref)) + 
-  geom_boxplot() +
-  geom_point( aes(fill=CountryName),
-    data = filter(covid.ten_cases,CountryName %in% c("France","Germany","Italy")),
-    shape=23, size=5) +
-  coord_flip() +
-  scale_x_discrete(labels = rev(labels)) +
-  xlab("Mesure") + ylab("Délais depuis le premier décès") +
-  ggtitle("Nombre de jours entre les 10 premiers cas confirmés\net différentes mesures") +
-  theme_excel_new() +
-  theme(plot.title = element_text(hjust = 0))  +
-  guides(shape="legend")
-
-```
+![](covid19_files/figure-html/ext.tencases-1.png)<!-- -->
 
 Le changement de point de référence, en prenant la date des 10 premiers cas confirmés, modère le constat fait en prenant pour point de référence le premier décès, sans en changer substantiellement les conclusions.
 
