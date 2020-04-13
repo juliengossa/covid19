@@ -108,7 +108,6 @@ Exemple de lecture : « _Parmi les pays ayant mis en œuvre une campagne d'infor
 
 Ce graphique permet de constater que la France est parmi les pays présentant les plus grands délais entre le premier cas de décès confirmé et la prise de mesures, hormis en ce qui concerne la campagne d'information.
 
-
 ```{r ext.tencases }
 covid.ten_cases %>%
   mutate(key = fct_rev(key)) %>%
