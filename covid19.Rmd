@@ -93,14 +93,14 @@ ggplot(aes(x=key,y=Days.since.ref)) +
   geom_boxplot() +
   geom_point( aes(shape="1"),
     data = filter(covid.first_death,CountryName == "France"),
-    color = "red", fill="blue", size=3) +
+    color = "red", fill="blue", size=5) +
   coord_flip() +
   scale_x_discrete(labels = rev(labels)) +
   scale_shape_manual(values=c(23), labels=c("France")) +
   xlab("Mesure") + ylab("Délais depuis le premier décès") +
-  ggtitle("Nombre de jours entre le premier décès confirmé\net la mise en œuvre de différentes mesures") +
+  ggtitle("Nombre de jours entre le premier décès confirmé\net différentes mesures") +
   theme_excel_new() +
-  theme(plot.title = element_text(hjust = 1))  +
+  theme(plot.title = element_text(hjust = 0))  +
   guides(shape="legend")
 
 ```
@@ -117,14 +117,14 @@ ggplot(aes(x=key,y=Days.since.ref)) +
   geom_boxplot() +
   geom_point( aes(shape="1"),
     data = filter(covid.ten_cases,CountryName == "France"),
-    color = "red", fill="blue", size=3) +
+    color = "red", fill="blue", size=5) +
   coord_flip() +
   scale_x_discrete(labels = rev(labels)) +
   scale_shape_manual(values=c(23), labels=c("France")) +
   xlab("Mesure") + ylab("Délais depuis le premier décès") +
-  ggtitle("Nombre de jours entre les 10 premiers cas confirmés\net la mise en œuvre de différentes mesures") +
+  ggtitle("Nombre de jours entre les 10 premiers cas confirmés\net différentes mesures") +
   theme_excel_new() +
-  theme(plot.title = element_text(hjust = 1))  +
+  theme(plot.title = element_text(hjust = 0))  +
   guides(shape="legend")
 
 ```
