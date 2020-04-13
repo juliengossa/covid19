@@ -295,9 +295,9 @@ Lire les données en incluant plus de pays sera difficile sous forme de table, e
 
 ![](covid19_files/figure-html/ext.death-1.png)<!-- -->
 
-Exemple de lecture : « _Parmis les pays ayant mis en œuvre une campagne d'information, le plus réactif l'a fait 92 jours avant le premier décès confirmé, et le moins réactif 16 jours après. La moitié des pays l'ont fait entre 43 et 10 jours avant, et la médiane est à 23 jours avant. La France l'a fait 22 jours avant._ ».
+Exemple de lecture : « _Parmi les pays ayant mis en œuvre une campagne d'information, le plus réactif l'a fait 92 jours avant le premier décès confirmé, et le moins réactif 16 jours après. La moitié des pays l'ont fait entre 43 et 10 jours avant, et la médiane est à 23 jours avant. La France l'a fait 22 jours avant._ ».
 
-Ce graphique permet de constater que la France est parmis les pays présentant les plus grands délais entre le premier cas de décès confirmé et la prise de mesures, hormis en ce qui concerne la campagne d'information.
+Ce graphique permet de constater que la France est parmi les pays présentant les plus grands délais entre le premier cas de décès confirmé et la prise de mesures, hormis en ce qui concerne la campagne d'information.
 
 
 ![](covid19_files/figure-html/ext.tencases-1.png)<!-- -->
