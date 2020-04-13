@@ -11,7 +11,7 @@ output:
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE, warning = FALSE)
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, fig.asp = 0.5)
 library(kableExtra)
 library(ggthemes)
 source("covid19.R")
@@ -91,12 +91,11 @@ covid.first_death %>%
   mutate(key = fct_rev(key)) %>%
 ggplot(aes(x=key,y=Days.since.ref)) + 
   geom_boxplot() +
-  geom_point( aes(shape="1"),
-    data = filter(covid.first_death,CountryName == "France"),
-    color = "red", fill="blue", size=5) +
+  geom_point( aes(fill=CountryName),
+    data = filter(covid.first_death,CountryName %in% c("France","Germany","Italy")),
+    shape=23, size=5) +
   coord_flip() +
   scale_x_discrete(labels = rev(labels)) +
-  scale_shape_manual(values=c(23), labels=c("France")) +
   xlab("Mesure") + ylab("Délais depuis le premier décès") +
   ggtitle("Nombre de jours entre le premier décès confirmé\net différentes mesures") +
   theme_excel_new() +
@@ -115,12 +114,11 @@ covid.ten_cases %>%
   mutate(key = fct_rev(key)) %>%
 ggplot(aes(x=key,y=Days.since.ref)) + 
   geom_boxplot() +
-  geom_point( aes(shape="1"),
-    data = filter(covid.ten_cases,CountryName == "France"),
-    color = "red", fill="blue", size=5) +
+  geom_point( aes(fill=CountryName),
+    data = filter(covid.ten_cases,CountryName %in% c("France","Germany","Italy")),
+    shape=23, size=5) +
   coord_flip() +
   scale_x_discrete(labels = rev(labels)) +
-  scale_shape_manual(values=c(23), labels=c("France")) +
   xlab("Mesure") + ylab("Délais depuis le premier décès") +
   ggtitle("Nombre de jours entre les 10 premiers cas confirmés\net différentes mesures") +
   theme_excel_new() +
