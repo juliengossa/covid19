@@ -299,7 +299,6 @@ Exemple de lecture : « _Parmi les pays ayant mis en œuvre une campagne d'infor
 
 Ce graphique permet de constater que la France est parmi les pays présentant les plus grands délais entre le premier cas de décès confirmé et la prise de mesures, hormis en ce qui concerne la campagne d'information.
 
-
 ![](covid19_files/figure-html/ext.tencases-1.png)<!-- -->
 
 Le changement de point de référence, en prenant la date des 10 premiers cas confirmés, modère le constat fait en prenant pour point de référence le premier décès, sans en changer substantiellement les conclusions.
