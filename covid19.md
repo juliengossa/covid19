@@ -311,49 +311,49 @@ Exemple de lecture : « _Parmi les pays ayant mis en œuvre une campagne d'infor
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:left;"> Campagne.information </td>
+   <td style="text-align:left;"> Campagne d'information </td>
    <td style="text-align:right;"> -92 </td>
    <td style="text-align:right;"> -28 </td>
    <td style="text-align:right;"> 16 </td>
    <td style="text-align:right;"> -22 </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Annulations.évènements </td>
+   <td style="text-align:left;"> Annulations d'évènements </td>
    <td style="text-align:right;"> -28 </td>
    <td style="text-align:right;"> -5 </td>
    <td style="text-align:right;"> 40 </td>
    <td style="text-align:right;"> 14 </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Fermeture.école </td>
+   <td style="text-align:left;"> Fermeture des écoles </td>
    <td style="text-align:right;"> -35 </td>
    <td style="text-align:right;"> -4 </td>
    <td style="text-align:right;"> 40 </td>
    <td style="text-align:right;"> 30 </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Fermeture.lieu_de_travail </td>
+   <td style="text-align:left;"> Fermeture des lieux de travail </td>
    <td style="text-align:right;"> -19 </td>
    <td style="text-align:right;"> 3 </td>
    <td style="text-align:right;"> 32 </td>
    <td style="text-align:right;"> 31 </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Restriction.transports_publics </td>
+   <td style="text-align:left;"> Restriction des transports publics </td>
    <td style="text-align:right;"> -26 </td>
    <td style="text-align:right;"> 1 </td>
    <td style="text-align:right;"> 40 </td>
    <td style="text-align:right;"> 30 </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Restriction.déplacements </td>
+   <td style="text-align:left;"> Restriction des déplacements </td>
    <td style="text-align:right;"> -18 </td>
    <td style="text-align:right;"> 4 </td>
    <td style="text-align:right;"> 54 </td>
    <td style="text-align:right;"> 31 </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Restriction.voyages </td>
+   <td style="text-align:left;"> Restriction des voyages </td>
    <td style="text-align:right;"> -61 </td>
    <td style="text-align:right;"> -10 </td>
    <td style="text-align:right;"> 75 </td>
@@ -382,49 +382,49 @@ Ces chiffres permettent de constater que la France est parmi les pays présentan
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:left;"> Campagne.information </td>
+   <td style="text-align:left;"> Campagne d'information </td>
    <td style="text-align:right;"> -100 </td>
    <td style="text-align:right;"> -20 </td>
    <td style="text-align:right;"> 43 </td>
    <td style="text-align:right;"> -15 </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Annulations.évènements </td>
+   <td style="text-align:left;"> Annulations d'évènements </td>
    <td style="text-align:right;"> -61 </td>
    <td style="text-align:right;"> 2 </td>
    <td style="text-align:right;"> 45 </td>
    <td style="text-align:right;"> 21 </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Fermeture.école </td>
+   <td style="text-align:left;"> Fermeture des écoles </td>
    <td style="text-align:right;"> -22 </td>
    <td style="text-align:right;"> 4 </td>
    <td style="text-align:right;"> 69 </td>
    <td style="text-align:right;"> 37 </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Fermeture.lieu_de_travail </td>
+   <td style="text-align:left;"> Fermeture des lieux de travail </td>
    <td style="text-align:right;"> -13 </td>
    <td style="text-align:right;"> 10 </td>
    <td style="text-align:right;"> 51 </td>
    <td style="text-align:right;"> 38 </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Restriction.transports_publics </td>
+   <td style="text-align:left;"> Restriction des transports publics </td>
    <td style="text-align:right;"> -30 </td>
    <td style="text-align:right;"> 8 </td>
    <td style="text-align:right;"> 66 </td>
    <td style="text-align:right;"> 37 </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Restriction.déplacements </td>
+   <td style="text-align:left;"> Restriction des déplacements </td>
    <td style="text-align:right;"> -13 </td>
    <td style="text-align:right;"> 12 </td>
    <td style="text-align:right;"> 66 </td>
    <td style="text-align:right;"> 38 </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Restriction.voyages </td>
+   <td style="text-align:left;"> Restriction des voyages </td>
    <td style="text-align:right;"> -55 </td>
    <td style="text-align:right;"> -2 </td>
    <td style="text-align:right;"> 85 </td>

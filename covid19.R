@@ -97,6 +97,7 @@ covid.getsum <- function(df) {
     full_join(
       subset(df,CountryName=="France",c(key,Days.since.ref))
     ) %>%
+    mutate(key = labels) %>%
     setNames(c("Mesure","Minimum","Moyenne","Maximum","France"))
 }
 
