@@ -46,11 +46,11 @@ Pour reproduire cette table, on peut calculer 5 mesures, plus proches de la sour
 En calculant le délais entre la date du premier cas de décès confirmé et la date de ces mesures, il est possible de produire la table suivante :
 
 
-__Nombre de jours entre la date du premier décès confirmé, et la mise en œuvre de différentes mesures__
 
 ```{r table}
 covid.first_death.table %>% 
-  kable(col.names = c("Pays", labels[c(2:4,6:7)]))
+  kable(col.names = c("Pays", labels[c(2:4,6:7)]),
+        caption = "Nombre de jours entre la date du premier décès confirmé, et la mise en œuvre de différentes mesures")
 ```
 
 
@@ -68,11 +68,10 @@ Pour confirmer ou infirmer les conclusions de cette table, il convient de vérif
 
 Le point de référence généralement utilisé pour étudier la pandémie n'est pas la date du premier décès confirmé, mais la date où 10 cas ont été confirmés.
 
-__Nombre de jours entre la date des 10 premiers cas confirmés, et différentes mesures__
-
 ```{r table.cas}
 covid.ten_cases.table %>% 
-  kable(col.names = c("Pays", labels[c(2:4,6:7)]))
+  kable(col.names = c("Pays", labels[c(2:4,6:7)]),
+        caption = "Nombre de jours entre la date des 10 premiers cas confirmés, et différentes mesures")
 ```
 
 Ce changement de point de référence modifie légèrement les conclusions de la table, puisque la France apparait alors comme plus réactive que l'Allemagne.
@@ -85,6 +84,8 @@ Pour étendre les indicateurs, on peut ajouter les mesures suivantes :
 - Restriction des transports publics (recommandée et ciblée)
 
 Lire les données en incluant plus de pays sera difficile sous forme de table, et c'est pourquoi il est nécessaire de proposer une représentation graphique.
+
+### Point de référence : premier décès confirmé
 
 ```{r ext.death }
 covid.first_death %>%
@@ -106,7 +107,14 @@ ggplot(aes(x=key,y=Days.since.ref)) +
 
 Exemple de lecture : « _Parmi les pays ayant mis en œuvre une campagne d'information, le plus réactif l'a fait 92 jours avant le premier décès confirmé, et le moins réactif 16 jours après. La moitié des pays l'ont fait entre 43 et 10 jours avant, et la médiane est à 23 jours avant. La France l'a fait 22 jours avant._ ».
 
-Ce graphique permet de constater que la France est parmi les pays présentant les plus grands délais entre le premier cas de décès confirmé et la prise de mesures, hormis en ce qui concerne la campagne d'information.
+```{r ext.death.table }
+covid.first_death.sum %>% kable(caption="Statistiques sur le nombre de jours entre le premier décès confirmé et différentes mesures")
+```
+&nbsp;   
+  
+Ces chiffres permettent de constater que la France est parmi les pays présentant les plus grands délais entre le premier cas de décès confirmé et la prise de mesures, hormis en ce qui concerne la campagne d'information.
+
+### Point de référence : 10 premiers cas confirmés
 
 ```{r ext.tencases }
 covid.ten_cases %>%
@@ -125,6 +133,11 @@ ggplot(aes(x=key,y=Days.since.ref)) +
   guides(shape="legend")
 
 ```
+
+```{r ext.tencases.table }
+covid.ten_cases.sum %>% kable(caption="Statistiques sur le nombre de jours entre les 10 premiers cas confirmés et différentes mesures")
+```
+&nbsp;  
 
 Le changement de point de référence, en prenant la date des 10 premiers cas confirmés, modère le constat fait en prenant pour point de référence le premier décès, sans en changer substantiellement les conclusions.
 

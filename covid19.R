@@ -85,12 +85,32 @@ covid.gettable <- function(df) {
          "Restriction.voyages")
 }
 
+
+covid.getsum <- function(df) {
+  df %>%
+    group_by(key) %>%
+    summarise(
+      Minimum = min(Days.since.ref, na.rm = TRUE),
+      Moyenne = round(mean(Days.since.ref, na.rm = TRUE)),
+      Maximum = max(Days.since.ref, na.rm = TRUE),
+    ) %>%
+    full_join(
+      subset(df,CountryName=="France",c(key,Days.since.ref))
+    ) %>%
+    setNames(c("Mesure","Minimum","Moyenne","Maximum","France"))
+}
+
+
 covid$Test <- covid$ConfirmedDeaths
 covid.first_death <- covid.getdelay(covid,1)
 covid.first_death.table <- covid.gettable(covid.first_death)
+covid.first_death.sum <- covid.getsum(covid.first_death)
+covid.first_death.sum
 
 covid$Test <- covid$ConfirmedCases
 covid.ten_cases <- covid.getdelay(covid,10)
 covid.ten_cases.table <- covid.gettable(covid.ten_cases)
+covid.ten_cases.sum <- covid.getsum(covid.ten_cases)
+covid.ten_cases.sum
 
 quantile(filter(covid.first_death, key == "Campagne.information")$Days.since.ref, na.rm = TRUE)

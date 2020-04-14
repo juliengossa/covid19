@@ -41,9 +41,9 @@ Pour reproduire cette table, on peut calculer 5 mesures, plus proches de la sour
 En calculant le délais entre la date du premier cas de décès confirmé et la date de ces mesures, il est possible de produire la table suivante :
 
 
-__Nombre de jours entre la date du premier décès confirmé, et la mise en œuvre de différentes mesures__
 
 <table>
+<caption>Nombre de jours entre la date du premier décès confirmé, et la mise en œuvre de différentes mesures</caption>
  <thead>
   <tr>
    <th style="text-align:left;"> Pays </th>
@@ -169,9 +169,8 @@ Pour confirmer ou infirmer les conclusions de cette table, il convient de vérif
 
 Le point de référence généralement utilisé pour étudier la pandémie n'est pas la date du premier décès confirmé, mais la date où 10 cas ont été confirmés.
 
-__Nombre de jours entre la date des 10 premiers cas confirmés, et différentes mesures__
-
 <table>
+<caption>Nombre de jours entre la date des 10 premiers cas confirmés, et différentes mesures</caption>
  <thead>
   <tr>
    <th style="text-align:left;"> Pays </th>
@@ -293,13 +292,147 @@ Pour étendre les indicateurs, on peut ajouter les mesures suivantes :
 
 Lire les données en incluant plus de pays sera difficile sous forme de table, et c'est pourquoi il est nécessaire de proposer une représentation graphique.
 
+### Point de référence : premier décès confirmé
+
 ![](covid19_files/figure-html/ext.death-1.png)<!-- -->
 
 Exemple de lecture : « _Parmi les pays ayant mis en œuvre une campagne d'information, le plus réactif l'a fait 92 jours avant le premier décès confirmé, et le moins réactif 16 jours après. La moitié des pays l'ont fait entre 43 et 10 jours avant, et la médiane est à 23 jours avant. La France l'a fait 22 jours avant._ ».
 
-Ce graphique permet de constater que la France est parmi les pays présentant les plus grands délais entre le premier cas de décès confirmé et la prise de mesures, hormis en ce qui concerne la campagne d'information.
+<table>
+<caption>Statistiques sur le nombre de jours entre le premier décès confirmé et différentes mesures</caption>
+ <thead>
+  <tr>
+   <th style="text-align:left;"> Mesure </th>
+   <th style="text-align:right;"> Minimum </th>
+   <th style="text-align:right;"> Moyenne </th>
+   <th style="text-align:right;"> Maximum </th>
+   <th style="text-align:right;"> France </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> Campagne.information </td>
+   <td style="text-align:right;"> -92 </td>
+   <td style="text-align:right;"> -28 </td>
+   <td style="text-align:right;"> 16 </td>
+   <td style="text-align:right;"> -22 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Annulations.évènements </td>
+   <td style="text-align:right;"> -28 </td>
+   <td style="text-align:right;"> -5 </td>
+   <td style="text-align:right;"> 40 </td>
+   <td style="text-align:right;"> 14 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Fermeture.école </td>
+   <td style="text-align:right;"> -35 </td>
+   <td style="text-align:right;"> -4 </td>
+   <td style="text-align:right;"> 40 </td>
+   <td style="text-align:right;"> 30 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Fermeture.lieu_de_travail </td>
+   <td style="text-align:right;"> -19 </td>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> 32 </td>
+   <td style="text-align:right;"> 31 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Restriction.transports_publics </td>
+   <td style="text-align:right;"> -26 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 40 </td>
+   <td style="text-align:right;"> 30 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Restriction.déplacements </td>
+   <td style="text-align:right;"> -18 </td>
+   <td style="text-align:right;"> 4 </td>
+   <td style="text-align:right;"> 54 </td>
+   <td style="text-align:right;"> 31 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Restriction.voyages </td>
+   <td style="text-align:right;"> -61 </td>
+   <td style="text-align:right;"> -10 </td>
+   <td style="text-align:right;"> 75 </td>
+   <td style="text-align:right;"> 32 </td>
+  </tr>
+</tbody>
+</table>
+&nbsp;   
+  
+Ces chiffres permettent de constater que la France est parmi les pays présentant les plus grands délais entre le premier cas de décès confirmé et la prise de mesures, hormis en ce qui concerne la campagne d'information.
+
+### Point de référence : 10 premiers cas confirmés
 
 ![](covid19_files/figure-html/ext.tencases-1.png)<!-- -->
+
+<table>
+<caption>Statistiques sur le nombre de jours entre les 10 premiers cas confirmés et différentes mesures</caption>
+ <thead>
+  <tr>
+   <th style="text-align:left;"> Mesure </th>
+   <th style="text-align:right;"> Minimum </th>
+   <th style="text-align:right;"> Moyenne </th>
+   <th style="text-align:right;"> Maximum </th>
+   <th style="text-align:right;"> France </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> Campagne.information </td>
+   <td style="text-align:right;"> -100 </td>
+   <td style="text-align:right;"> -20 </td>
+   <td style="text-align:right;"> 43 </td>
+   <td style="text-align:right;"> -15 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Annulations.évènements </td>
+   <td style="text-align:right;"> -61 </td>
+   <td style="text-align:right;"> 2 </td>
+   <td style="text-align:right;"> 45 </td>
+   <td style="text-align:right;"> 21 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Fermeture.école </td>
+   <td style="text-align:right;"> -22 </td>
+   <td style="text-align:right;"> 4 </td>
+   <td style="text-align:right;"> 69 </td>
+   <td style="text-align:right;"> 37 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Fermeture.lieu_de_travail </td>
+   <td style="text-align:right;"> -13 </td>
+   <td style="text-align:right;"> 10 </td>
+   <td style="text-align:right;"> 51 </td>
+   <td style="text-align:right;"> 38 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Restriction.transports_publics </td>
+   <td style="text-align:right;"> -30 </td>
+   <td style="text-align:right;"> 8 </td>
+   <td style="text-align:right;"> 66 </td>
+   <td style="text-align:right;"> 37 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Restriction.déplacements </td>
+   <td style="text-align:right;"> -13 </td>
+   <td style="text-align:right;"> 12 </td>
+   <td style="text-align:right;"> 66 </td>
+   <td style="text-align:right;"> 38 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Restriction.voyages </td>
+   <td style="text-align:right;"> -55 </td>
+   <td style="text-align:right;"> -2 </td>
+   <td style="text-align:right;"> 85 </td>
+   <td style="text-align:right;"> 39 </td>
+  </tr>
+</tbody>
+</table>
+&nbsp;  
 
 Le changement de point de référence, en prenant la date des 10 premiers cas confirmés, modère le constat fait en prenant pour point de référence le premier décès, sans en changer substantiellement les conclusions.
 
