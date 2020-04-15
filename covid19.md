@@ -410,9 +410,11 @@ On constate donc des différences selon le choix du point de référence : 1er d
 
 ![](covid19_files/figure-html/dates-1.png)<!-- -->
 
+Exemple de lecture : « _Le point de référence "10 cas confirmé" se situe entre le 3 et le 19 mars 2020 pour la moitié des pays, avec une médiane au 11 mars. Pour la France, il est le 8 février 2020._ ».
+
 Cette figure permet de dresser plusieurs constats :
 
-- la France fait partie des pays ayant connu le plus tôt un 1er décès et 10 cas confirmés : ces points de référence sont donc défavorables si on considère seulement la situation mondiale, et pas la situation locale ;
+- la France fait partie des pays ayant connu le plus tôt un 1er décès et 10 cas confirmés : ces points de référence sont donc défavorables à la réactivité française si on considère seulement la situation locale, et pas la situation mondiale ;
 - les points de référence de la France et de l'Allemagne sont inversés, avec un écart substantiel entre le 1er décès et les 10 cas confirmés pour l'Allemagne : ceci explique la différence de réactivité comparée entre ces deux pays selon le point de référence.
 
 # Extension à d'autres pays et d'autres indicateurs
@@ -643,7 +645,7 @@ Le changement de point de référence, en prenant la date du 16 mars 2020, montr
 
 Pour conclure, l'exploitation des données ouvertes collectées par la _Blavatnik School of Government_ de l'Université d'Oxford permet de globalement confirmer les valeurs de la table diffusée sur les réseaux sociaux, même si de plus amples investigations seraient nécessaires pour expliquer des différences non significatives. Cependant, le point de référence choisi dans cette table est celui, parmi ceux étudiés ici, qui montre la plus mauvaise réactivité pour la France. 
 
-Concernant la France, on peut en réalité dresser les constats suivant  :
+Concernant la France, on peut en réalité dresser les constats suivants :
 
 - sa réactivité est globalement dans la moyenne lorsqu'on prend le calendrier comme point de référence ;
 - mais elle a été touchée plus tôt que la plupart des autres pays par la pandémie Covid-19 ;
