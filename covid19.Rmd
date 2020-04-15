@@ -1,5 +1,5 @@
 ---
-title: "Etude du délais des mesures de la France dans la pandémie Covid19"
+title: "Une étude de la réactivité de la France dans la pandémie Covid19"
 author: |
   | Julien Gossa
   | Université de Strasbourg
@@ -7,6 +7,7 @@ date: "13/04/2020"
 output:
   html_document:
     keep_md: yes
+    number_sections: true
   pdf_document: default
 ---
 
@@ -25,7 +26,7 @@ Le 28 mars 2020, M. Philippe, Premier ministre Français, déclarait « _Je ne l
 
 Cette table montre un délais de réponse particulièrement élevé pour la France, comparativement aux autres pays. Ce document vise à reproduire cette table, puis proposer une visualisation du délais des mesures de la France.
 
-## Source des données 
+# Source des données 
 
 La source des données de cette table semble être une étude mennée par la _Blavatnik School of Government_ de l'Université d'Oxford : « _Variation in government responses to COVID-19_ » [ref](https://www.bsg.ox.ac.uk/research/publications/variation-government-responses-covid-19).
 
@@ -33,10 +34,10 @@ Cette étude propose 13 indicateurs, déclinés en deux dimensions : le niveau d
 
 Ces indicateurs ne correspondent pas exactement à ceux présentés dans la table. Notamment, on n'y retrouve pas les distinctions « magasins » ou « production », et « vitale » ou « non vitales ».
 
-## Reproduction
+# Reproduction
 
 Pour reproduire cette table, on peut calculer 5 mesures, plus proches de la source des données, en considérant la date des mesures obligatoires et générales : 
-  
+
   - Annulations d'évènements 
   - Fermeture des écoles
   - Fermeture des lieux de travail 
@@ -64,9 +65,11 @@ Un traitement manuel de certaines données peut possiblement mener à ce type de
 
 Pour confirmer ou infirmer les conclusions de cette table, il convient de vérifier deux choses : le changement du point de référence, et l'extension des données à d'autres pays et d'autres indicateurs.
 
-## Changement du point de référence
+# Changement du point de référence
 
-Le point de référence généralement utilisé pour étudier la pandémie n'est pas la date du premier décès confirmé, mais la date où 10 cas ont été confirmés.
+## Point de référence : 10 premiers cas confirmés
+
+Le point de référence généralement utilisé pour étudier la pandémie n'est pas la date du premier décès confirmé, mais la date où 10 cas ont été confirmés. Utiliser les cas confirmés atténue le biais dû au taux de mortalité, qui ajoute une variation aux taux de contamination ; et utiliser 10 cas est plus solide qu'un seul, qui peut représenter un cas particulier. 
 
 ```{r table.cas}
 covid.ten_cases.table %>% 
@@ -76,7 +79,49 @@ covid.ten_cases.table %>%
 
 Ce changement de point de référence modifie légèrement les conclusions de la table, puisque la France apparait alors comme plus réactive que l'Allemagne.
 
-## Extension à d'autres pays et d'autres indicateurs
+## Point de référence : 16 mars 2020
+
+Un autre point de référence peut être tout simplement la date, soit le nombre de jours depuis le 16 mars 2020, début du confinement français. Il permet de mesurer la réaction des pays non pas par rapport à leur situation locale, mais par rapport à la situation globale. 
+
+```{r table.date}
+covid.date.table %>% 
+  kable(col.names = c("Pays", labels[c(2:4,6:7)]),
+        caption = "Nombre de jours entre le 1er janvier 2020 et différentes mesures")
+```
+
+Ce changement de point de référence modifie également les conclusions de la table, puisque la France apparait alors comme globalement plus réactive pour la restriction des déplacements, même si elle reste globalement moins réactives que les autres pays de la table pour les autres mesures, hormis l'Angleterre qui présente une semaine de retard.
+
+## Discussion sur les points de références
+
+On constate donc des différences selon le choix du point de référence : 1er décès confirmé, 10 cas confirmés, ou une date arbitraire. Il est nécessaire de visualiser ces dates pour pousser l'analyse :
+
+```{r dates, fig.asp=0.25}
+df <- covid.dates %>% 
+  pivot_longer(
+    cols = Date.first_death:Date.ten_cases,
+    names_to = "Type",
+    values_to = "Date"
+  ) %>%
+  mutate(Type = fct_rev(Type))
+
+ggplot(df, aes(x=Type,y=Date)) + 
+  geom_boxplot() +
+  geom_point( aes(fill=CountryName,
+                  stroke = case_when(CountryName == "France" ~ 1.3, TRUE ~ 0.5)),
+              data = filter(df,CountryName %in% countries.sel),
+              shape=23, size=5) +
+  scale_x_discrete(labels = c("1er décès confirmé","10 cas confirmés")) +
+  coord_flip() +
+  ggtitle("Dates des points de référence") +
+  theme_excel_new()
+```
+
+Cette figure permet de dresser plusieurs constats :
+
+- la France fait partie des pays ayant connu le plus tôt un 1er décès et 10 cas confirmés : ces points de référence sont donc défavorables si on considère seulement la situation mondiale, et pas la situation locale ;
+- les points de référence de la France et de l'Allemagne sont inversés, avec un écart substantiel entre le 1er décès et les 10 cas confirmés pour l'Allemagne : ceci explique la différence de réactivité comparée entre ces deux pays selon le point de référence.
+
+# Extension à d'autres pays et d'autres indicateurs
 
 Pour étendre les indicateurs, on peut ajouter les mesures suivantes :
 
@@ -85,24 +130,10 @@ Pour étendre les indicateurs, on peut ajouter les mesures suivantes :
 
 Lire les données en incluant plus de pays sera difficile sous forme de table, et c'est pourquoi il est nécessaire de proposer une représentation graphique.
 
-### Point de référence : premier décès confirmé
+## Point de référence : premier décès confirmé
 
 ```{r ext.death }
-covid.first_death %>%
-  mutate(key = fct_rev(key)) %>%
-ggplot(aes(x=key,y=Days.since.ref)) + 
-  geom_boxplot() +
-  geom_point( aes(fill=CountryName),
-    data = filter(covid.first_death,CountryName %in% c("France","Germany","Italy")),
-    shape=23, size=5) +
-  coord_flip() +
-  scale_x_discrete(labels = rev(labels)) +
-  xlab("Mesure") + ylab("Délais depuis le premier décès") +
-  ggtitle("Nombre de jours entre le premier décès confirmé\net différentes mesures") +
-  theme_excel_new() +
-  theme(plot.title = element_text(hjust = 0))  +
-  guides(shape="legend")
-
+covid.plot(covid.first_death, "Nombre de jours entre le premier décès confirmé et différentes mesures")
 ```
 
 Exemple de lecture : « _Parmi les pays ayant mis en œuvre une campagne d'information, le plus réactif l'a fait 92 jours avant le premier décès confirmé, et le moins réactif 16 jours après. La moitié des pays l'ont fait entre 43 et 10 jours avant, et la médiane est à 23 jours avant. La France l'a fait 22 jours avant._ ».
@@ -114,24 +145,10 @@ covid.first_death.sum %>% kable(caption="Statistiques sur le nombre de jours ent
   
 Ces chiffres permettent de constater que la France est parmi les pays présentant les plus grands délais entre le premier cas de décès confirmé et la prise de mesures, hormis en ce qui concerne la campagne d'information.
 
-### Point de référence : 10 premiers cas confirmés
+## Point de référence : 10 premiers cas confirmés
 
 ```{r ext.tencases }
-covid.ten_cases %>%
-  mutate(key = fct_rev(key)) %>%
-ggplot(aes(x=key,y=Days.since.ref)) + 
-  geom_boxplot() +
-  geom_point( aes(fill=CountryName),
-    data = filter(covid.ten_cases,CountryName %in% c("France","Germany","Italy")),
-    shape=23, size=5) +
-  coord_flip() +
-  scale_x_discrete(labels = rev(labels)) +
-  xlab("Mesure") + ylab("Délais depuis le premier décès") +
-  ggtitle("Nombre de jours entre les 10 premiers cas confirmés\net différentes mesures") +
-  theme_excel_new() +
-  theme(plot.title = element_text(hjust = 0))  +
-  guides(shape="legend")
-
+covid.plot(covid.ten_cases, "Nombre de jours entre les 10 premiers cas confirmés et différentes mesures")
 ```
 
 ```{r ext.tencases.table }
@@ -141,9 +158,29 @@ covid.ten_cases.sum %>% kable(caption="Statistiques sur le nombre de jours entre
 
 Le changement de point de référence, en prenant la date des 10 premiers cas confirmés, modère le constat fait en prenant pour point de référence le premier décès, sans en changer substantiellement les conclusions.
 
-## Conclusion
+## Point de référence : 16 mars 2020
 
-Pour conclure, même si la table diffusée sur les réseaux sociaux présente plusieurs informations qui nécessiteraient de plus amples investigations, l'exploitation des données ouvertes collectées par la _Blavatnik School of Government_ de l'Université d'Oxford montre un délais important en France pour la prise de mesures dans la pandémie Covid19, comparativement aux autres pays surveillés, pour les deux points de répères étudiés ici, et les indicateurs étudiés ici.
+```{r ext.date }
+covid.plot(covid.date, "Nombre de jours entre le 16 mars 2020 et différentes mesures")
+```
+
+```{r ext.date.table }
+covid.date.sum %>% kable(caption="Statistiques sur le nombre de jours entre le 16 mars 2020 et différentes mesures")
+```
+&nbsp;  
+
+Le changement de point de référence, en prenant la date du 16 mars 2020, montre que la France est dans la moyenne internationale, hormis pour la campagne d'information et pour l'annulation d'évènement pour lesquels elle est dans le quart des pays les plus réactifs.
+
+# Conclusion
+
+Pour conclure, l'exploitation des données ouvertes collectées par la _Blavatnik School of Government_ de l'Université d'Oxford permet de globalement confirmer les valeurs de la table diffusée sur les réseaux sociaux, même si de plus amples investigations seraient nécessaires pour expliquer des différences non significatives. Cependant, le point de référence choisi dans cette table est celui, parmi ceux étudiés ici, qui montre la plus mauvaise réactivité pour la France. 
+
+Concernant la France, on peut en réalité dresser les constats suivant  :
+
+- sa réactivité est globalement dans la moyenne lorsqu'on prend le calendrier comme point de référence ;
+- mais elle a été touchée plus tôt que la plupart des autres pays par la pandémie Covid-19 ;
+- elle se retrouve donc parmi les pays les moins réactifs lorsqu'on considère les points de référence locaux, 1er décès et 10 cas confirmés nationnaux.
+
 
 Une comparaison avec d'autres jeux de données est nécessaire pour confirmer ou infirmer ces résultats. D'autres façons, plus fines, de mesurer les temps de réponses sont disponibles dans [l'étude initiale](https://www.bsg.ox.ac.uk/research/publications/variation-government-responses-covid-19).
 

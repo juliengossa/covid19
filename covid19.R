@@ -1,8 +1,10 @@
 library(tidyverse)
 
-countries = c("Austria", "Belgium", "Czech Republic", "France", 
+countries <- c("Austria", "Belgium", "Czech Republic", "France", 
               "Germany", "Greece", "Hungary", "Italy", "Poland", 
               "Portugal", "Spain", "United Kingdom")
+
+countries.sel <- c("France", "Germany", "Italy", "United Kingdom")
 
 keys <- c(
   "Campagne.information",
@@ -58,7 +60,7 @@ covid.getdelay <- function(df, min=1) {
         S7_International.travel.controls == 3 ~ TRUE,
         TRUE ~ FALSE)
     ) %>%
-    select(CountryName, Days.since.ref, Campagne.information:Restriction.voyages) %>% 
+    select(CountryName, Date, Date.ref, Days.since.ref, Campagne.information:Restriction.voyages) %>% 
     pivot_longer(
       cols = Campagne.information:Restriction.voyages,
       names_to = "key",
@@ -66,9 +68,10 @@ covid.getdelay <- function(df, min=1) {
     ) %>%
     mutate(key = factor(key, levels = keys)) %>%
     filter(value == TRUE)%>%
-    group_by(CountryName, key) %>%
+    group_by(CountryName, Date.ref, key) %>%
     arrange(Days.since.ref) %>%
-    summarise(Days.since.ref = first(Days.since.ref))
+    summarise(Days.since.ref = first(Days.since.ref)) %>%
+    ungroup()
 }
 
 covid.gettable <- function(df) {
@@ -101,6 +104,28 @@ covid.getsum <- function(df) {
     setNames(c("Mesure","Minimum","Moyenne","Maximum","France"))
 }
 
+covid.plot <- function(df, title) {
+  df.sel <- df %>%
+    filter(CountryName %in% countries.sel) %>%
+    mutate(CountryName = factor(CountryName, levels=countries.sel)) %>%
+    arrange(desc(CountryName))
+  
+  df %>% arrange(-CountryName) %>%
+    mutate(key = fct_rev(key)) %>%
+    ggplot(aes(x=key,y=Days.since.ref)) + 
+    geom_boxplot() +
+    geom_point( aes(fill=CountryName, 
+                    stroke = case_when(CountryName == "France" ~ 1.3, TRUE ~ 0.5)),
+                data = df.sel,
+                shape=23, size=5) +
+    coord_flip() +
+    scale_x_discrete(labels = rev(labels)) +
+    xlab("Mesure") + ylab("Nombre de jours") +
+    ggtitle(title) +
+    theme_excel_new() +
+    theme(plot.title = element_text(hjust = 1))  +
+    guides(shape="legend")
+}
 
 covid$Test <- covid$ConfirmedDeaths
 covid.first_death <- covid.getdelay(covid,1)
@@ -114,4 +139,19 @@ covid.ten_cases.table <- covid.gettable(covid.ten_cases)
 covid.ten_cases.sum <- covid.getsum(covid.ten_cases)
 covid.ten_cases.sum
 
+covid$Test <- covid$Date
+covid.date <- covid.getdelay(covid,"2020-03-16")
+covid.date.table <- covid.gettable(covid.date)
+covid.date.sum <- covid.getsum(covid.date)
+covid.date.sum
+
 quantile(filter(covid.first_death, key == "Campagne.information")$Days.since.ref, na.rm = TRUE)
+
+covid.dates <- full_join(
+  transmute(covid.first_death,
+            CountryName = CountryName,
+            Date.first_death = Date.ref),
+  transmute(covid.ten_cases,
+            CountryName = CountryName,
+            Date.ten_cases = Date.ref)) %>% unique()
+

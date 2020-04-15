@@ -1,5 +1,5 @@
 ---
-title: "Etude du délais des mesures de la France dans la pandémie Covid19"
+title: "Une étude de la réactivité de la France dans la pandémie Covid19"
 author: |
   | Julien Gossa
   | Université de Strasbourg
@@ -7,6 +7,7 @@ date: "13/04/2020"
 output:
   html_document:
     keep_md: yes
+    number_sections: true
   pdf_document: default
 ---
 
@@ -20,7 +21,7 @@ Le 28 mars 2020, M. Philippe, Premier ministre Français, déclarait « _Je ne l
 
 Cette table montre un délais de réponse particulièrement élevé pour la France, comparativement aux autres pays. Ce document vise à reproduire cette table, puis proposer une visualisation du délais des mesures de la France.
 
-## Source des données 
+# Source des données 
 
 La source des données de cette table semble être une étude mennée par la _Blavatnik School of Government_ de l'Université d'Oxford : « _Variation in government responses to COVID-19_ » [ref](https://www.bsg.ox.ac.uk/research/publications/variation-government-responses-covid-19).
 
@@ -28,10 +29,10 @@ Cette étude propose 13 indicateurs, déclinés en deux dimensions : le niveau d
 
 Ces indicateurs ne correspondent pas exactement à ceux présentés dans la table. Notamment, on n'y retrouve pas les distinctions « magasins » ou « production », et « vitale » ou « non vitales ».
 
-## Reproduction
+# Reproduction
 
 Pour reproduire cette table, on peut calculer 5 mesures, plus proches de la source des données, en considérant la date des mesures obligatoires et générales : 
-  
+
   - Annulations d'évènements 
   - Fermeture des écoles
   - Fermeture des lieux de travail 
@@ -165,9 +166,11 @@ Un traitement manuel de certaines données peut possiblement mener à ce type de
 
 Pour confirmer ou infirmer les conclusions de cette table, il convient de vérifier deux choses : le changement du point de référence, et l'extension des données à d'autres pays et d'autres indicateurs.
 
-## Changement du point de référence
+# Changement du point de référence
 
-Le point de référence généralement utilisé pour étudier la pandémie n'est pas la date du premier décès confirmé, mais la date où 10 cas ont été confirmés.
+## Point de référence : 10 premiers cas confirmés
+
+Le point de référence généralement utilisé pour étudier la pandémie n'est pas la date du premier décès confirmé, mais la date où 10 cas ont été confirmés. Utiliser les cas confirmés atténue le biais dû au taux de mortalité, qui ajoute une variation aux taux de contamination ; et utiliser 10 cas est plus solide qu'un seul, qui peut représenter un cas particulier. 
 
 <table>
 <caption>Nombre de jours entre la date des 10 premiers cas confirmés, et différentes mesures</caption>
@@ -283,7 +286,136 @@ Le point de référence généralement utilisé pour étudier la pandémie n'est
 
 Ce changement de point de référence modifie légèrement les conclusions de la table, puisque la France apparait alors comme plus réactive que l'Allemagne.
 
-## Extension à d'autres pays et d'autres indicateurs
+## Point de référence : 16 mars 2020
+
+Un autre point de référence peut être tout simplement la date, soit le nombre de jours depuis le 16 mars 2020, début du confinement français. Il permet de mesurer la réaction des pays non pas par rapport à leur situation locale, mais par rapport à la situation globale. 
+
+<table>
+<caption>Nombre de jours entre le 1er janvier 2020 et différentes mesures</caption>
+ <thead>
+  <tr>
+   <th style="text-align:left;"> Pays </th>
+   <th style="text-align:right;"> Annulations d'évènements </th>
+   <th style="text-align:right;"> Fermeture des écoles </th>
+   <th style="text-align:right;"> Fermeture des lieux de travail </th>
+   <th style="text-align:right;"> Restriction des déplacements </th>
+   <th style="text-align:right;"> Restriction des voyages </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> Austria </td>
+   <td style="text-align:right;"> -5 </td>
+   <td style="text-align:right;"> -4 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> -7 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Belgium </td>
+   <td style="text-align:right;"> -2 </td>
+   <td style="text-align:right;"> -2 </td>
+   <td style="text-align:right;"> -2 </td>
+   <td style="text-align:right;"> 2 </td>
+   <td style="text-align:right;"> 1 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Czech Republic </td>
+   <td style="text-align:right;"> -5 </td>
+   <td style="text-align:right;"> -5 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> France </td>
+   <td style="text-align:right;"> -16 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 2 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Germany </td>
+   <td style="text-align:right;"> -6 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> 6 </td>
+   <td style="text-align:right;"> 0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Greece </td>
+   <td style="text-align:right;"> -16 </td>
+   <td style="text-align:right;"> -5 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> 7 </td>
+   <td style="text-align:right;"> NA </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Hungary </td>
+   <td style="text-align:right;"> -5 </td>
+   <td style="text-align:right;"> -5 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> 12 </td>
+   <td style="text-align:right;"> -7 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Italy </td>
+   <td style="text-align:right;"> -22 </td>
+   <td style="text-align:right;"> -12 </td>
+   <td style="text-align:right;"> -6 </td>
+   <td style="text-align:right;"> -7 </td>
+   <td style="text-align:right;"> -46 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Poland </td>
+   <td style="text-align:right;"> -6 </td>
+   <td style="text-align:right;"> -4 </td>
+   <td style="text-align:right;"> -3 </td>
+   <td style="text-align:right;"> 15 </td>
+   <td style="text-align:right;"> -1 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Portugal </td>
+   <td style="text-align:right;"> -4 </td>
+   <td style="text-align:right;"> -3 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> -6 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Spain </td>
+   <td style="text-align:right;"> -6 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 18 </td>
+   <td style="text-align:right;"> -2 </td>
+   <td style="text-align:right;"> -6 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> United Kingdom </td>
+   <td style="text-align:right;"> 5 </td>
+   <td style="text-align:right;"> 7 </td>
+   <td style="text-align:right;"> 8 </td>
+   <td style="text-align:right;"> 7 </td>
+   <td style="text-align:right;"> NA </td>
+  </tr>
+</tbody>
+</table>
+
+Ce changement de point de référence modifie également les conclusions de la table, puisque la France apparait alors comme globalement plus réactive pour la restriction des déplacements, même si elle reste globalement moins réactives que les autres pays de la table pour les autres mesures, hormis l'Angleterre qui présente une semaine de retard.
+
+## Discussion sur les points de références
+
+On constate donc des différences selon le choix du point de référence : 1er décès confirmé, 10 cas confirmés, ou une date arbitraire. Il est nécessaire de visualiser ces dates pour pousser l'analyse :
+
+![](covid19_files/figure-html/dates-1.png)<!-- -->
+
+Cette figure permet de dresser plusieurs constats :
+
+- la France fait partie des pays ayant connu le plus tôt un 1er décès et 10 cas confirmés : ces points de référence sont donc défavorables si on considère seulement la situation mondiale, et pas la situation locale ;
+- les points de référence de la France et de l'Allemagne sont inversés, avec un écart substantiel entre le 1er décès et les 10 cas confirmés pour l'Allemagne : ceci explique la différence de réactivité comparée entre ces deux pays selon le point de référence.
+
+# Extension à d'autres pays et d'autres indicateurs
 
 Pour étendre les indicateurs, on peut ajouter les mesures suivantes :
 
@@ -292,7 +424,7 @@ Pour étendre les indicateurs, on peut ajouter les mesures suivantes :
 
 Lire les données en incluant plus de pays sera difficile sous forme de table, et c'est pourquoi il est nécessaire de proposer une représentation graphique.
 
-### Point de référence : premier décès confirmé
+## Point de référence : premier décès confirmé
 
 ![](covid19_files/figure-html/ext.death-1.png)<!-- -->
 
@@ -365,7 +497,7 @@ Exemple de lecture : « _Parmi les pays ayant mis en œuvre une campagne d'infor
   
 Ces chiffres permettent de constater que la France est parmi les pays présentant les plus grands délais entre le premier cas de décès confirmé et la prise de mesures, hormis en ce qui concerne la campagne d'information.
 
-### Point de référence : 10 premiers cas confirmés
+## Point de référence : 10 premiers cas confirmés
 
 ![](covid19_files/figure-html/ext.tencases-1.png)<!-- -->
 
@@ -436,9 +568,87 @@ Ces chiffres permettent de constater que la France est parmi les pays présentan
 
 Le changement de point de référence, en prenant la date des 10 premiers cas confirmés, modère le constat fait en prenant pour point de référence le premier décès, sans en changer substantiellement les conclusions.
 
-## Conclusion
+## Point de référence : 16 mars 2020
 
-Pour conclure, même si la table diffusée sur les réseaux sociaux présente plusieurs informations qui nécessiteraient de plus amples investigations, l'exploitation des données ouvertes collectées par la _Blavatnik School of Government_ de l'Université d'Oxford montre un délais important en France pour la prise de mesures dans la pandémie Covid19, comparativement aux autres pays surveillés, pour les deux points de répères étudiés ici, et les indicateurs étudiés ici.
+![](covid19_files/figure-html/ext.date-1.png)<!-- -->
+
+<table>
+<caption>Statistiques sur le nombre de jours entre le 16 mars 2020 et différentes mesures</caption>
+ <thead>
+  <tr>
+   <th style="text-align:left;"> Mesure </th>
+   <th style="text-align:right;"> Minimum </th>
+   <th style="text-align:right;"> Moyenne </th>
+   <th style="text-align:right;"> Maximum </th>
+   <th style="text-align:right;"> France </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> Campagne d'information </td>
+   <td style="text-align:right;"> -75 </td>
+   <td style="text-align:right;"> -26 </td>
+   <td style="text-align:right;"> 19 </td>
+   <td style="text-align:right;"> -52 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Annulations d'évènements </td>
+   <td style="text-align:right;"> -55 </td>
+   <td style="text-align:right;"> -4 </td>
+   <td style="text-align:right;"> 21 </td>
+   <td style="text-align:right;"> -16 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Fermeture des écoles </td>
+   <td style="text-align:right;"> -51 </td>
+   <td style="text-align:right;"> -2 </td>
+   <td style="text-align:right;"> 23 </td>
+   <td style="text-align:right;"> 0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Fermeture des lieux de travail </td>
+   <td style="text-align:right;"> -50 </td>
+   <td style="text-align:right;"> 5 </td>
+   <td style="text-align:right;"> 26 </td>
+   <td style="text-align:right;"> 1 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Restriction des transports publics </td>
+   <td style="text-align:right;"> -53 </td>
+   <td style="text-align:right;"> 4 </td>
+   <td style="text-align:right;"> 22 </td>
+   <td style="text-align:right;"> 0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Restriction des déplacements </td>
+   <td style="text-align:right;"> -14 </td>
+   <td style="text-align:right;"> 6 </td>
+   <td style="text-align:right;"> 22 </td>
+   <td style="text-align:right;"> 1 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Restriction des voyages </td>
+   <td style="text-align:right;"> -53 </td>
+   <td style="text-align:right;"> -8 </td>
+   <td style="text-align:right;"> 18 </td>
+   <td style="text-align:right;"> 2 </td>
+  </tr>
+</tbody>
+</table>
+&nbsp;  
+
+Le changement de point de référence, en prenant la date du 16 mars 2020, montre que la France est dans la moyenne internationale, hormis pour la campagne d'information et pour l'annulation d'évènement pour lesquels elle est dans le quart des pays les plus réactifs.
+
+# Conclusion
+
+Pour conclure, l'exploitation des données ouvertes collectées par la _Blavatnik School of Government_ de l'Université d'Oxford permet de globalement confirmer les valeurs de la table diffusée sur les réseaux sociaux, même si de plus amples investigations seraient nécessaires pour expliquer des différences non significatives. Cependant, le point de référence choisi dans cette table est celui, parmi ceux étudiés ici, qui montre la plus mauvaise réactivité pour la France. 
+
+Concernant la France, on peut en réalité dresser les constats suivant  :
+
+- sa réactivité est globalement dans la moyenne lorsqu'on prend le calendrier comme point de référence ;
+- mais elle a été touchée plus tôt que la plupart des autres pays par la pandémie Covid-19 ;
+- elle se retrouve donc parmi les pays les moins réactifs lorsqu'on considère les points de référence locaux, 1er décès et 10 cas confirmés nationnaux.
+
 
 Une comparaison avec d'autres jeux de données est nécessaire pour confirmer ou infirmer ces résultats. D'autres façons, plus fines, de mesurer les temps de réponses sont disponibles dans [l'étude initiale](https://www.bsg.ox.ac.uk/research/publications/variation-government-responses-covid-19).
 
