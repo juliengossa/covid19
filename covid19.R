@@ -133,6 +133,7 @@ covid.first_death.table <- covid.gettable(covid.first_death)
 covid.first_death.sum <- covid.getsum(covid.first_death)
 covid.first_death.sum
 
+
 covid$Test <- covid$ConfirmedCases
 covid.ten_cases <- covid.getdelay(covid,10)
 covid.ten_cases.table <- covid.gettable(covid.ten_cases)

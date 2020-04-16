@@ -12,7 +12,7 @@ output:
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE, warning = FALSE, fig.asp = 0.5)
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE, fig.asp = 0.5)
 library(kableExtra)
 library(ggthemes)
 source("covid19.R")
@@ -187,3 +187,54 @@ Concernant la France, on peut en réalité dresser les constats suivants :
 Une comparaison avec d'autres jeux de données est nécessaire pour confirmer ou infirmer ces résultats. D'autres façons, plus fines, de mesurer les temps de réponses sont disponibles dans [l'étude initiale](https://www.bsg.ox.ac.uk/research/publications/variation-government-responses-covid-19).
 
 Il convient de conclure en affirmant que cette comparaison des délais ne saurait en aucun cas résumer les politiques sanitaires nationales, et que les comparaisons internationnales sont toujours complexes et se doivent d'être distanciées. 
+
+## Encore d'autres points de référence
+
+### 10 décés confirmés
+
+```{r comp.10_death}
+covid$Test <- covid$ConfirmedDeaths
+covid.test <- covid.getdelay(covid,10)
+covid.test.table <- covid.gettable(covid.test)
+covid.test.sum <- covid.getsum(covid.test)
+```
+
+```{r table.10_death}
+covid.test.table %>% 
+  kable(col.names = c("Pays", labels[c(2:4,6:7)]),
+        caption = "Nombre de jours entre la date des 10 premiers décès confirmés, et différentes mesures")
+```
+
+```{r ext.10_death}
+covid.plot(covid.test, "Nombre de jours entre les 10 premiers décès et différentes mesures")
+```
+
+```{r ext.10_death.table }
+covid.test.sum %>% kable(caption="Statistiques sur le nombre de jours entre les 10 premiers décès et différentes mesures")
+```
+
+
+### 1000 cas confirmés
+
+```{r comp.1000_cases}
+covid$Test <- covid$ConfirmedCases
+covid.test <- covid.getdelay(covid,1000)
+covid.test.table <- covid.gettable(covid.test)
+covid.test.sum <- covid.getsum(covid.test)
+```
+
+```{r table.1000_cases}
+covid.test.table %>% 
+  kable(col.names = c("Pays", labels[c(2:4,6:7)]),
+        caption = "Nombre de jours entre les 1000 premiers cas confirmés et différentes mesures")
+```
+
+```{r ext.1000_cases}
+covid.plot(covid.test, "Nombre de jours entre les 1000 premiers cas confirmés et différentes mesures")
+```
+
+```{r ext.1000_cases.table }
+covid.test.sum %>% kable(caption="Statistiques sur le nombre de jours entre les 1000 premiers cas confirmés et différentes mesures")
+```
+
+

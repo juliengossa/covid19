@@ -655,3 +655,372 @@ Concernant la France, on peut en réalité dresser les constats suivants :
 Une comparaison avec d'autres jeux de données est nécessaire pour confirmer ou infirmer ces résultats. D'autres façons, plus fines, de mesurer les temps de réponses sont disponibles dans [l'étude initiale](https://www.bsg.ox.ac.uk/research/publications/variation-government-responses-covid-19).
 
 Il convient de conclure en affirmant que cette comparaison des délais ne saurait en aucun cas résumer les politiques sanitaires nationales, et que les comparaisons internationnales sont toujours complexes et se doivent d'être distanciées. 
+
+## Encore d'autres points de référence
+
+### 10 décés confirmés
+
+
+
+<table>
+<caption>Nombre de jours entre la date des 10 premiers décès confirmés, et différentes mesures</caption>
+ <thead>
+  <tr>
+   <th style="text-align:left;"> Pays </th>
+   <th style="text-align:right;"> Annulations d'évènements </th>
+   <th style="text-align:right;"> Fermeture des écoles </th>
+   <th style="text-align:right;"> Fermeture des lieux de travail </th>
+   <th style="text-align:right;"> Restriction des déplacements </th>
+   <th style="text-align:right;"> Restriction des voyages </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> Austria </td>
+   <td style="text-align:right;"> -12 </td>
+   <td style="text-align:right;"> -11 </td>
+   <td style="text-align:right;"> -7 </td>
+   <td style="text-align:right;"> -7 </td>
+   <td style="text-align:right;"> -14 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Belgium </td>
+   <td style="text-align:right;"> -5 </td>
+   <td style="text-align:right;"> -5 </td>
+   <td style="text-align:right;"> -5 </td>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> -2 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Czech Republic </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> France </td>
+   <td style="text-align:right;"> -8 </td>
+   <td style="text-align:right;"> 8 </td>
+   <td style="text-align:right;"> 9 </td>
+   <td style="text-align:right;"> 9 </td>
+   <td style="text-align:right;"> 10 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Germany </td>
+   <td style="text-align:right;"> -6 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> 6 </td>
+   <td style="text-align:right;"> 0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Greece </td>
+   <td style="text-align:right;"> -22 </td>
+   <td style="text-align:right;"> -11 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> NA </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Hungary </td>
+   <td style="text-align:right;"> -14 </td>
+   <td style="text-align:right;"> -14 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> -16 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Italy </td>
+   <td style="text-align:right;"> -3 </td>
+   <td style="text-align:right;"> 7 </td>
+   <td style="text-align:right;"> 13 </td>
+   <td style="text-align:right;"> 12 </td>
+   <td style="text-align:right;"> -27 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Poland </td>
+   <td style="text-align:right;"> -15 </td>
+   <td style="text-align:right;"> -13 </td>
+   <td style="text-align:right;"> -12 </td>
+   <td style="text-align:right;"> 6 </td>
+   <td style="text-align:right;"> -10 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Portugal </td>
+   <td style="text-align:right;"> -10 </td>
+   <td style="text-align:right;"> -9 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> -12 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Spain </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 6 </td>
+   <td style="text-align:right;"> 24 </td>
+   <td style="text-align:right;"> 4 </td>
+   <td style="text-align:right;"> 0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> United Kingdom </td>
+   <td style="text-align:right;"> 8 </td>
+   <td style="text-align:right;"> 10 </td>
+   <td style="text-align:right;"> 11 </td>
+   <td style="text-align:right;"> 10 </td>
+   <td style="text-align:right;"> NA </td>
+  </tr>
+</tbody>
+</table>
+
+![](covid19_files/figure-html/ext.10_death-1.png)<!-- -->
+
+<table>
+<caption>Statistiques sur le nombre de jours entre les 10 premiers décès et différentes mesures</caption>
+ <thead>
+  <tr>
+   <th style="text-align:left;"> Mesure </th>
+   <th style="text-align:right;"> Minimum </th>
+   <th style="text-align:right;"> Moyenne </th>
+   <th style="text-align:right;"> Maximum </th>
+   <th style="text-align:right;"> France </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> Campagne d'information </td>
+   <td style="text-align:right;"> -85 </td>
+   <td style="text-align:right;"> -33 </td>
+   <td style="text-align:right;"> 12 </td>
+   <td style="text-align:right;"> -44 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Annulations d'évènements </td>
+   <td style="text-align:right;"> -38 </td>
+   <td style="text-align:right;"> -13 </td>
+   <td style="text-align:right;"> 8 </td>
+   <td style="text-align:right;"> -8 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Fermeture des écoles </td>
+   <td style="text-align:right;"> -29 </td>
+   <td style="text-align:right;"> -11 </td>
+   <td style="text-align:right;"> 10 </td>
+   <td style="text-align:right;"> 8 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Fermeture des lieux de travail </td>
+   <td style="text-align:right;"> -18 </td>
+   <td style="text-align:right;"> -4 </td>
+   <td style="text-align:right;"> 24 </td>
+   <td style="text-align:right;"> 9 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Restriction des transports publics </td>
+   <td style="text-align:right;"> -33 </td>
+   <td style="text-align:right;"> -7 </td>
+   <td style="text-align:right;"> 14 </td>
+   <td style="text-align:right;"> 8 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Restriction des déplacements </td>
+   <td style="text-align:right;"> -20 </td>
+   <td style="text-align:right;"> -5 </td>
+   <td style="text-align:right;"> 24 </td>
+   <td style="text-align:right;"> 9 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Restriction des voyages </td>
+   <td style="text-align:right;"> -61 </td>
+   <td style="text-align:right;"> -15 </td>
+   <td style="text-align:right;"> 64 </td>
+   <td style="text-align:right;"> 10 </td>
+  </tr>
+</tbody>
+</table>
+
+
+### 1000 cas confirmés
+
+
+
+<table>
+<caption>Nombre de jours entre les 1000 premiers cas confirmés et différentes mesures</caption>
+ <thead>
+  <tr>
+   <th style="text-align:left;"> Pays </th>
+   <th style="text-align:right;"> Annulations d'évènements </th>
+   <th style="text-align:right;"> Fermeture des écoles </th>
+   <th style="text-align:right;"> Fermeture des lieux de travail </th>
+   <th style="text-align:right;"> Restriction des déplacements </th>
+   <th style="text-align:right;"> Restriction des voyages </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> Austria </td>
+   <td style="text-align:right;"> -6 </td>
+   <td style="text-align:right;"> -5 </td>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> -8 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Belgium </td>
+   <td style="text-align:right;"> -3 </td>
+   <td style="text-align:right;"> -3 </td>
+   <td style="text-align:right;"> -3 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Czech Republic </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> France </td>
+   <td style="text-align:right;"> -9 </td>
+   <td style="text-align:right;"> 7 </td>
+   <td style="text-align:right;"> 8 </td>
+   <td style="text-align:right;"> 8 </td>
+   <td style="text-align:right;"> 9 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Germany </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 6 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> 12 </td>
+   <td style="text-align:right;"> 6 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Greece </td>
+   <td style="text-align:right;"> -29 </td>
+   <td style="text-align:right;"> -18 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> -6 </td>
+   <td style="text-align:right;"> NA </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Hungary </td>
+   <td style="text-align:right;"> -30 </td>
+   <td style="text-align:right;"> -30 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> -13 </td>
+   <td style="text-align:right;"> -32 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Italy </td>
+   <td style="text-align:right;"> -7 </td>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> 9 </td>
+   <td style="text-align:right;"> 8 </td>
+   <td style="text-align:right;"> -31 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Poland </td>
+   <td style="text-align:right;"> -16 </td>
+   <td style="text-align:right;"> -14 </td>
+   <td style="text-align:right;"> -13 </td>
+   <td style="text-align:right;"> 5 </td>
+   <td style="text-align:right;"> -11 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Portugal </td>
+   <td style="text-align:right;"> -9 </td>
+   <td style="text-align:right;"> -8 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> -11 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Spain </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 6 </td>
+   <td style="text-align:right;"> 24 </td>
+   <td style="text-align:right;"> 4 </td>
+   <td style="text-align:right;"> 0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> United Kingdom </td>
+   <td style="text-align:right;"> 6 </td>
+   <td style="text-align:right;"> 8 </td>
+   <td style="text-align:right;"> 9 </td>
+   <td style="text-align:right;"> 8 </td>
+   <td style="text-align:right;"> NA </td>
+  </tr>
+</tbody>
+</table>
+
+![](covid19_files/figure-html/ext.1000_cases-1.png)<!-- -->
+
+<table>
+<caption>Statistiques sur le nombre de jours entre les 1000 premiers cas confirmés et différentes mesures</caption>
+ <thead>
+  <tr>
+   <th style="text-align:left;"> Mesure </th>
+   <th style="text-align:right;"> Minimum </th>
+   <th style="text-align:right;"> Moyenne </th>
+   <th style="text-align:right;"> Maximum </th>
+   <th style="text-align:right;"> France </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> Campagne d'information </td>
+   <td style="text-align:right;"> -101 </td>
+   <td style="text-align:right;"> -38 </td>
+   <td style="text-align:right;"> 6 </td>
+   <td style="text-align:right;"> -45 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Annulations d'évènements </td>
+   <td style="text-align:right;"> -76 </td>
+   <td style="text-align:right;"> -14 </td>
+   <td style="text-align:right;"> 6 </td>
+   <td style="text-align:right;"> -9 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Fermeture des écoles </td>
+   <td style="text-align:right;"> -77 </td>
+   <td style="text-align:right;"> -13 </td>
+   <td style="text-align:right;"> 8 </td>
+   <td style="text-align:right;"> 7 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Fermeture des lieux de travail </td>
+   <td style="text-align:right;"> -73 </td>
+   <td style="text-align:right;"> -7 </td>
+   <td style="text-align:right;"> 24 </td>
+   <td style="text-align:right;"> 8 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Restriction des transports publics </td>
+   <td style="text-align:right;"> -31 </td>
+   <td style="text-align:right;"> -9 </td>
+   <td style="text-align:right;"> 10 </td>
+   <td style="text-align:right;"> 7 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Restriction des déplacements </td>
+   <td style="text-align:right;"> -27 </td>
+   <td style="text-align:right;"> -5 </td>
+   <td style="text-align:right;"> 24 </td>
+   <td style="text-align:right;"> 8 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Restriction des voyages </td>
+   <td style="text-align:right;"> -75 </td>
+   <td style="text-align:right;"> -21 </td>
+   <td style="text-align:right;"> 61 </td>
+   <td style="text-align:right;"> 9 </td>
+  </tr>
+</tbody>
+</table>
+
+
