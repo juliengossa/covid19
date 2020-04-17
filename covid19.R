@@ -112,8 +112,9 @@ covid.getsum <- function(df) {
 }
 
 covid.getall <- function(var, min) {
+  minstr <- ifelse(is.numeric(min), sprintf("%05d",min), min)
   df <- covid.getdelay(var, min) %>%
-    mutate(Ref=paste(var,min,sep='_'))
+    mutate(Ref=paste(var,minstr,sep='_'))
   all <- list(
     delay = df,
     table = covid.gettable(df),
@@ -149,4 +150,6 @@ covid.deaths_1 <- covid.getall("ConfirmedDeaths",1)
 covid.deaths_10 <- covid.getall("ConfirmedDeaths",10)
 covid.cases_10 <- covid.getall("ConfirmedCases",10)
 covid.cases_1000 <-  covid.getall("ConfirmedCases",1000)
+
+
 

@@ -1004,4 +1004,11 @@ Il convient de conclure en affirmant que cette comparaison des délais ne saurai
 </tbody>
 </table>
 
+### Animations
+
+![](confirmedcase.gif)
+
+![](confirmeddeaths.gif)
+
+
 

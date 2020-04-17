@@ -262,4 +262,11 @@ covid.plot(covid.cases_1000$delay, "Nombre de jours entre les 1000 premiers cas 
 covid.cases_1000$sum %>% kable(caption="Statistiques sur le nombre de jours entre les 1000 premiers cas confirmés et différentes mesures")
 ```
 
+### Animations
+
+![](confirmedcase.gif)
+
+![](confirmeddeaths.gif)
+
+
 
