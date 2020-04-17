@@ -20,11 +20,18 @@ source("covid19.R")
 
 _Attention : Ce travail se base sur un [unique jeu de données](https://ocgptweb.azurewebsites.net/CSVDownload), et les résultats n'ont pas été vérifiés par un tiers. Les sources sont disponibles [ici](https://github.com/juliengossa/covid19)._
 
+
+
 Le 28 mars 2020, M. Philippe, Premier ministre Français, déclarait « _Je ne laisserai personne dire qu'il y a eu du retard sur les mesures de confinement_ » [ref](https://www.huffingtonpost.fr/entry/direct-coronavirus-lepidemie-setend-la-moitie-du-monde-en-confinement_fr_5e7e3310c5b6cb9dc19f6953). Peu après apparaissait sur les réseaux sociaux une table présentant les délais entre le premier cas de décés dû au Covid19 et différentes mesures pour différents pays. 
 
 ![](table.jpeg "Table délais réseaux sociaux")
 
-Cette table montre un délais de réponse particulièrement élevé pour la France, comparativement aux autres pays. Ce document vise à reproduire cette table, puis proposer une visualisation du délais des mesures de la France.
+Cette table montre un délais de réponse particulièrement élevé pour la France, comparativement aux autres pays. Ce document a pour objectifs de 
+
+1. reproduire cette table pour vérifier la véracité de ses données ;
+1. contrôler le biais du choix du point de référence temporel ;
+1. contrôler le biais des choix de l'échantillon d'indicateurs et de pays ;
+1. contribuer à la réflexion sur les points de référence temporel.
 
 # Source des données 
 
@@ -49,7 +56,7 @@ En calculant le délais entre la date du premier cas de décès confirmé et la 
 
 
 ```{r table}
-covid.first_death.table %>% 
+covid.deaths_1$table %>%
   kable(col.names = c("Pays", labels[c(2:4,6:7)]),
         caption = "Nombre de jours entre la date du premier décès confirmé, et la mise en œuvre de différentes mesures")
 ```
@@ -72,7 +79,7 @@ Pour confirmer ou infirmer les conclusions de cette table, il convient de vérif
 Le point de référence généralement utilisé pour étudier la pandémie n'est pas la date du premier décès confirmé, mais la date où 10 cas ont été confirmés. Utiliser les cas confirmés atténue le biais dû au taux de mortalité, qui ajoute une variation aux taux de contamination ; et utiliser 10 cas est plus solide qu'un seul, qui peut représenter un cas particulier. 
 
 ```{r table.cas}
-covid.ten_cases.table %>% 
+covid.cases_10$table %>% 
   kable(col.names = c("Pays", labels[c(2:4,6:7)]),
         caption = "Nombre de jours entre la date des 10 premiers cas confirmés, et différentes mesures")
 ```
@@ -84,7 +91,7 @@ Ce changement de point de référence modifie légèrement les conclusions de la
 Un autre point de référence peut être tout simplement la date, soit le nombre de jours depuis le 16 mars 2020, début du confinement français. Il permet de mesurer la réaction des pays non pas par rapport à leur situation locale, mais par rapport à la situation globale. 
 
 ```{r table.date}
-covid.date.table %>% 
+covid.calendar$table %>% 
   kable(col.names = c("Pays", labels[c(2:4,6:7)]),
         caption = "Nombre de jours entre le 1er janvier 2020 et différentes mesures")
 ```
@@ -95,22 +102,26 @@ Ce changement de point de référence modifie également les conclusions de la t
 
 On constate donc des différences selon le choix du point de référence : 1er décès confirmé, 10 cas confirmés, ou une date arbitraire. Il est nécessaire de visualiser ces dates pour pousser l'analyse :
 
-```{r dates, fig.asp=0.25}
-df <- covid.dates %>% 
-  pivot_longer(
-    cols = Date.first_death:Date.ten_cases,
-    names_to = "Type",
-    values_to = "Date"
-  ) %>%
-  mutate(Type = fct_rev(Type))
+```{r dates, fig.asp=0.4}
+covid.dates <- bind_rows(list(
+  covid.deaths_1$delay, 
+  covid.deaths_10$delay, 
+  covid.cases_10$delay, 
+  covid.cases_1000$delay
+  )) %>%
+  select(CountryName, Date.ref, Ref) %>%
+  unique()
 
-ggplot(df, aes(x=Type,y=Date)) + 
+ggplot(covid.dates, aes(x=Ref,y=Date.ref)) + 
   geom_boxplot() +
   geom_point( aes(fill=CountryName,
                   stroke = case_when(CountryName == "France" ~ 1.3, TRUE ~ 0.5)),
-              data = filter(df,CountryName %in% countries.sel),
+              data = filter(covid.dates,CountryName %in% countries.sel),
               shape=23, size=5) +
-  scale_x_discrete(labels = c("10 cas confirmés","1er décès confirmé")) +
+  scale_x_discrete(
+    limits = c("ConfirmedCases_1000", "ConfirmedDeaths_10", "ConfirmedDeaths_1", "ConfirmedCases_10"),
+    labels = c("1000 cas confirmés", "10 décès confirmés", "1er décès confirmé", "10 cas confirmés")) +
+    #labels = c("10 cas confirmés","1er décès confirmé")) +
   coord_flip() +
   ggtitle("Dates des points de référence") +
   theme_excel_new()
@@ -118,10 +129,37 @@ ggplot(df, aes(x=Type,y=Date)) +
 
 Exemple de lecture : « _Le point de référence "10 cas confirmé" se situe entre le 3 et le 19 mars 2020 pour la moitié des pays, avec une médiane au 11 mars. Pour la France, il est le 8 février 2020._ ».
 
-Cette figure permet de dresser plusieurs constats :
+Pour une meilleure lecture, il est possible d'aligner les dates sur la date médiane pour chacun des points de référence :
 
-- la France fait partie des pays ayant connu le plus tôt un 1er décès et 10 cas confirmés : ces points de référence sont donc défavorables à la réactivité française si on considère seulement la situation locale, et pas la situation mondiale ;
+```{r dates.norm, fig.asp=0.4}
+covid.dates.norm <- covid.dates %>%
+  group_by(Ref) %>%
+  mutate(Date.ref = Date.ref - median(Date.ref))
+
+ggplot(covid.dates.norm, aes(x=Ref,y=Date.ref)) + 
+  geom_boxplot() +
+  geom_point( aes(fill=CountryName,
+                  stroke = case_when(CountryName == "France" ~ 1.3, TRUE ~ 0.5)),
+              data = filter(covid.dates.norm, CountryName %in% countries.sel),
+              shape=23, size=5) +
+  scale_x_discrete(
+    limits = c("ConfirmedCases_1000", "ConfirmedDeaths_10", "ConfirmedDeaths_1", "ConfirmedCases_10"),
+    labels = c("1000 cas confirmés", "10 décès confirmés", "1er décès confirmé", "10 cas confirmés")) +
+    #labels = c("10 cas confirmés","1er décès confirmé")) +
+  coord_flip() +
+  ggtitle("Dates des points de référence") +
+  theme_excel_new()
+```
+
+Exemple de lecture : « _Pour la France, les point de référence pour "10 cas confirmé", "1er décès confirmés", "10 décès confirmés" et "1000 cas confirmés" sont respectivement 33, 35, 19 et 18 jours avant la médiane mondiale _ ».
+
+
+ces deux figures permetten de dresser plusieurs constats :
+
+- la France fait partie des pays ayant connu le plus tôt un 1er décès et 10 cas confirmés : ces points de référence sont donc défavorables à la mesure de la réactivité française en comparaison internationale  ;
+- le point de référence "1er décès confirmé", retenus dans la table étudiée, est celui qui montre le plus grand écart entre la date française et la médiane internationnale ;
 - les points de référence de la France et de l'Allemagne sont inversés, avec un écart substantiel entre le 1er décès et les 10 cas confirmés pour l'Allemagne : ceci explique la différence de réactivité comparée entre ces deux pays selon le point de référence.
+
 
 # Extension à d'autres pays et d'autres indicateurs
 
@@ -135,13 +173,13 @@ Lire les données en incluant plus de pays sera difficile sous forme de table, e
 ## Point de référence : premier décès confirmé
 
 ```{r ext.death }
-covid.plot(covid.first_death, "Nombre de jours entre le premier décès confirmé et différentes mesures")
+covid.plot(covid.deaths_1$delay, "Nombre de jours entre le premier décès confirmé et différentes mesures")
 ```
 
 Exemple de lecture : « _Parmi les pays ayant mis en œuvre une campagne d'information, le plus réactif l'a fait 92 jours avant le premier décès confirmé, et le moins réactif 16 jours après. La moitié des pays l'ont fait entre 43 et 10 jours avant, et la médiane est à 23 jours avant. La France l'a fait 22 jours avant._ ».
 
 ```{r ext.death.table }
-covid.first_death.sum %>% kable(caption="Statistiques sur le nombre de jours entre le premier décès confirmé et différentes mesures")
+covid.deaths_1$sum %>% kable(caption="Statistiques sur le nombre de jours entre le premier décès confirmé et différentes mesures")
 ```
 &nbsp;   
   
@@ -150,11 +188,11 @@ Ces chiffres permettent de constater que la France est parmi les pays présentan
 ## Point de référence : 10 premiers cas confirmés
 
 ```{r ext.tencases }
-covid.plot(covid.ten_cases, "Nombre de jours entre les 10 premiers cas confirmés et différentes mesures")
+covid.plot(covid.cases_10$delay, "Nombre de jours entre les 10 premiers cas confirmés et différentes mesures")
 ```
 
 ```{r ext.tencases.table }
-covid.ten_cases.sum %>% kable(caption="Statistiques sur le nombre de jours entre les 10 premiers cas confirmés et différentes mesures")
+covid.cases_10$sum %>% kable(caption="Statistiques sur le nombre de jours entre les 10 premiers cas confirmés et différentes mesures")
 ```
 &nbsp;  
 
@@ -163,11 +201,11 @@ Le changement de point de référence, en prenant la date des 10 premiers cas co
 ## Point de référence : 16 mars 2020
 
 ```{r ext.date }
-covid.plot(covid.date, "Nombre de jours entre le 16 mars 2020 et différentes mesures")
+covid.plot(covid.calendar$delay, "Nombre de jours entre le 16 mars 2020 et différentes mesures")
 ```
 
 ```{r ext.date.table }
-covid.date.sum %>% kable(caption="Statistiques sur le nombre de jours entre le 16 mars 2020 et différentes mesures")
+covid.calendar$sum %>% kable(caption="Statistiques sur le nombre de jours entre le 16 mars 2020 et différentes mesures")
 ```
 &nbsp;  
 
@@ -192,49 +230,36 @@ Il convient de conclure en affirmant que cette comparaison des délais ne saurai
 
 ### 10 décés confirmés
 
-```{r comp.10_death}
-covid$Test <- covid$ConfirmedDeaths
-covid.test <- covid.getdelay(covid,10)
-covid.test.table <- covid.gettable(covid.test)
-covid.test.sum <- covid.getsum(covid.test)
-```
 
 ```{r table.10_death}
-covid.test.table %>% 
+covid.deaths_10$table %>% 
   kable(col.names = c("Pays", labels[c(2:4,6:7)]),
         caption = "Nombre de jours entre la date des 10 premiers décès confirmés, et différentes mesures")
 ```
 
 ```{r ext.10_death}
-covid.plot(covid.test, "Nombre de jours entre les 10 premiers décès et différentes mesures")
+covid.plot(covid.deaths_10$delay, "Nombre de jours entre les 10 premiers décès et différentes mesures")
 ```
 
 ```{r ext.10_death.table }
-covid.test.sum %>% kable(caption="Statistiques sur le nombre de jours entre les 10 premiers décès et différentes mesures")
+covid.deaths_10$sum %>% kable(caption="Statistiques sur le nombre de jours entre les 10 premiers décès et différentes mesures")
 ```
 
 
 ### 1000 cas confirmés
 
-```{r comp.1000_cases}
-covid$Test <- covid$ConfirmedCases
-covid.test <- covid.getdelay(covid,1000)
-covid.test.table <- covid.gettable(covid.test)
-covid.test.sum <- covid.getsum(covid.test)
-```
-
 ```{r table.1000_cases}
-covid.test.table %>% 
+covid.cases_1000$table %>% 
   kable(col.names = c("Pays", labels[c(2:4,6:7)]),
         caption = "Nombre de jours entre les 1000 premiers cas confirmés et différentes mesures")
 ```
 
 ```{r ext.1000_cases}
-covid.plot(covid.test, "Nombre de jours entre les 1000 premiers cas confirmés et différentes mesures")
+covid.plot(covid.cases_1000$delay, "Nombre de jours entre les 1000 premiers cas confirmés et différentes mesures")
 ```
 
 ```{r ext.1000_cases.table }
-covid.test.sum %>% kable(caption="Statistiques sur le nombre de jours entre les 1000 premiers cas confirmés et différentes mesures")
+covid.cases_1000$sum %>% kable(caption="Statistiques sur le nombre de jours entre les 1000 premiers cas confirmés et différentes mesures")
 ```
 
 

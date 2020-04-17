@@ -1,4 +1,6 @@
 library(tidyverse)
+library(gganimate)
+
 
 countries <- c("Austria", "Belgium", "Czech Republic", "France", 
               "Germany", "Greece", "Hungary", "Italy", "Poland", 
@@ -28,13 +30,13 @@ labels <- c(
 covid <- read.csv("OxCGRT_Download_130420_075000_Full.csv") %>%
   mutate(Date = as.Date(as.character(Date),"%Y%m%d")) 
 
-covid.getdelay <- function(df, min=1) {
-  df %>%
+covid.getdelay <- function(var, min) {
+  covid %>%
     group_by(CountryName) %>%
-    filter(Test >= min) %>%
+    filter(!!as.symbol(var) >= min) %>%
     summarise(Date.ref = first(Date)) %>%
     ungroup() %>%
-    right_join(df) %>%
+    right_join(covid) %>%
     mutate(Days.since.ref = Date - Date.ref) %>%
     arrange(CountryName,Date) %>%
     mutate(
@@ -60,32 +62,37 @@ covid.getdelay <- function(df, min=1) {
         S7_International.travel.controls == 3 ~ TRUE,
         TRUE ~ FALSE)
     ) %>%
-    select(CountryName, Date, Date.ref, Days.since.ref, Campagne.information:Restriction.voyages) %>% 
+    select(CountryName, Date, Date.ref, ConfirmedCases, ConfirmedDeaths, Days.since.ref, Campagne.information:Restriction.voyages) %>% 
     pivot_longer(
       cols = Campagne.information:Restriction.voyages,
       names_to = "key",
       values_to = "value",
     ) %>%
-    mutate(key = factor(key, levels = keys)) %>%
+    mutate(
+      key = factor(key, levels = keys),
+      Days.since.ref = as.numeric(Days.since.ref)) %>%
     filter(value == TRUE)%>%
-    group_by(CountryName, Date.ref, key) %>%
-    arrange(Days.since.ref) %>%
-    summarise(Days.since.ref = first(Days.since.ref)) %>%
+    #group_by(CountryName, Date.ref, key) %>%
+    #arrange() %>%
+    #summarise(Days.since.ref = first(Days.since.ref)) %>%
+    group_by(CountryName, key) %>%
+    top_n(1,desc(Days.since.ref)) %>%
     ungroup()
 }
 
 covid.gettable <- function(df) {
-  df %>%
-  pivot_wider(
-    names_from = key,
-    values_from = Days.since.ref) %>%
-  filter(CountryName %in% countries) %>%
-  select(CountryName, 
-         "Annulations.évènements",
-         "Fermeture.école",
-         "Fermeture.lieu_de_travail",
-         "Restriction.déplacements",
-         "Restriction.voyages")
+  df %>% 
+    select(CountryName, key, Days.since.ref) %>%
+    pivot_wider(
+      names_from = key,
+      values_from = Days.since.ref) %>%
+    filter(CountryName %in% countries) %>%
+    select(CountryName, 
+           "Annulations.évènements",
+           "Fermeture.école",
+           "Fermeture.lieu_de_travail",
+           "Restriction.déplacements",
+           "Restriction.voyages")
 }
 
 
@@ -102,6 +109,16 @@ covid.getsum <- function(df) {
     ) %>%
     mutate(key = labels) %>%
     setNames(c("Mesure","Minimum","Moyenne","Maximum","France"))
+}
+
+covid.getall <- function(var, min) {
+  df <- covid.getdelay(var, min) %>%
+    mutate(Ref=paste(var,min,sep='_'))
+  all <- list(
+    delay = df,
+    table = covid.gettable(df),
+    sum = covid.getsum(df)
+  )
 }
 
 covid.plot <- function(df, title) {
@@ -127,32 +144,9 @@ covid.plot <- function(df, title) {
     guides(shape="legend")
 }
 
-covid$Test <- covid$ConfirmedDeaths
-covid.first_death <- covid.getdelay(covid,1)
-covid.first_death.table <- covid.gettable(covid.first_death)
-covid.first_death.sum <- covid.getsum(covid.first_death)
-covid.first_death.sum
-
-
-covid$Test <- covid$ConfirmedCases
-covid.ten_cases <- covid.getdelay(covid,10)
-covid.ten_cases.table <- covid.gettable(covid.ten_cases)
-covid.ten_cases.sum <- covid.getsum(covid.ten_cases)
-covid.ten_cases.sum
-
-covid$Test <- covid$Date
-covid.date <- covid.getdelay(covid,"2020-03-16")
-covid.date.table <- covid.gettable(covid.date)
-covid.date.sum <- covid.getsum(covid.date)
-covid.date.sum
-
-quantile(filter(covid.first_death, key == "Campagne.information")$Days.since.ref, na.rm = TRUE)
-
-covid.dates <- full_join(
-  transmute(covid.first_death,
-            CountryName = CountryName,
-            Date.first_death = Date.ref),
-  transmute(covid.ten_cases,
-            CountryName = CountryName,
-            Date.ten_cases = Date.ref)) %>% unique()
+covid.calendar <- covid.getall("Date","2020-03-16")
+covid.deaths_1 <- covid.getall("ConfirmedDeaths",1)
+covid.deaths_10 <- covid.getall("ConfirmedDeaths",10)
+covid.cases_10 <- covid.getall("ConfirmedCases",10)
+covid.cases_1000 <-  covid.getall("ConfirmedCases",1000)
 

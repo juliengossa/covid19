@@ -15,11 +15,18 @@ output:
 
 _Attention : Ce travail se base sur un [unique jeu de données](https://ocgptweb.azurewebsites.net/CSVDownload), et les résultats n'ont pas été vérifiés par un tiers. Les sources sont disponibles [ici](https://github.com/juliengossa/covid19)._
 
+
+
 Le 28 mars 2020, M. Philippe, Premier ministre Français, déclarait « _Je ne laisserai personne dire qu'il y a eu du retard sur les mesures de confinement_ » [ref](https://www.huffingtonpost.fr/entry/direct-coronavirus-lepidemie-setend-la-moitie-du-monde-en-confinement_fr_5e7e3310c5b6cb9dc19f6953). Peu après apparaissait sur les réseaux sociaux une table présentant les délais entre le premier cas de décés dû au Covid19 et différentes mesures pour différents pays. 
 
 ![](table.jpeg "Table délais réseaux sociaux")
 
-Cette table montre un délais de réponse particulièrement élevé pour la France, comparativement aux autres pays. Ce document vise à reproduire cette table, puis proposer une visualisation du délais des mesures de la France.
+Cette table montre un délais de réponse particulièrement élevé pour la France, comparativement aux autres pays. Ce document a pour objectifs de 
+
+1. reproduire cette table pour vérifier la véracité de ses données ;
+1. contrôler le biais du choix du point de référence temporel ;
+1. contrôler le biais des choix de l'échantillon d'indicateurs et de pays ;
+1. contribuer à la réflexion sur les points de référence temporel.
 
 # Source des données 
 
@@ -71,14 +78,6 @@ En calculant le délais entre la date du premier cas de décès confirmé et la 
    <td style="text-align:right;"> 2 </td>
    <td style="text-align:right;"> 6 </td>
    <td style="text-align:right;"> 5 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Czech Republic </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
   </tr>
   <tr>
    <td style="text-align:left;"> France </td>
@@ -200,14 +199,6 @@ Le point de référence généralement utilisé pour étudier la pandémie n'est
    <td style="text-align:right;"> 10 </td>
    <td style="text-align:right;"> 14 </td>
    <td style="text-align:right;"> 13 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Czech Republic </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
   </tr>
   <tr>
    <td style="text-align:left;"> France </td>
@@ -412,10 +403,19 @@ On constate donc des différences selon le choix du point de référence : 1er d
 
 Exemple de lecture : « _Le point de référence "10 cas confirmé" se situe entre le 3 et le 19 mars 2020 pour la moitié des pays, avec une médiane au 11 mars. Pour la France, il est le 8 février 2020._ ».
 
-Cette figure permet de dresser plusieurs constats :
+Pour une meilleure lecture, il est possible d'aligner les dates sur la date médiane pour chacun des points de référence :
 
-- la France fait partie des pays ayant connu le plus tôt un 1er décès et 10 cas confirmés : ces points de référence sont donc défavorables à la réactivité française si on considère seulement la situation locale, et pas la situation mondiale ;
+![](covid19_files/figure-html/dates.norm-1.png)<!-- -->
+
+Exemple de lecture : « _Pour la France, les point de référence pour "10 cas confirmé", "1er décès confirmés", "10 décès confirmés" et "1000 cas confirmés" sont respectivement 33, 35, 19 et 18 jours avant la médiane mondiale _ ».
+
+
+ces deux figures permetten de dresser plusieurs constats :
+
+- la France fait partie des pays ayant connu le plus tôt un 1er décès et 10 cas confirmés : ces points de référence sont donc défavorables à la mesure de la réactivité française en comparaison internationale  ;
+- le point de référence "1er décès confirmé", retenus dans la table étudiée, est celui qui montre le plus grand écart entre la date française et la médiane internationnale ;
 - les points de référence de la France et de l'Allemagne sont inversés, avec un écart substantiel entre le 1er décès et les 10 cas confirmés pour l'Allemagne : ceci explique la différence de réactivité comparée entre ces deux pays selon le point de référence.
+
 
 # Extension à d'autres pays et d'autres indicateurs
 
@@ -661,7 +661,6 @@ Il convient de conclure en affirmant que cette comparaison des délais ne saurai
 ### 10 décés confirmés
 
 
-
 <table>
 <caption>Nombre de jours entre la date des 10 premiers décès confirmés, et différentes mesures</caption>
  <thead>
@@ -690,14 +689,6 @@ Il convient de conclure en affirmant que cette comparaison des délais ne saurai
    <td style="text-align:right;"> -5 </td>
    <td style="text-align:right;"> -1 </td>
    <td style="text-align:right;"> -2 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Czech Republic </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
   </tr>
   <tr>
    <td style="text-align:left;"> France </td>
@@ -843,8 +834,6 @@ Il convient de conclure en affirmant que cette comparaison des délais ne saurai
 
 ### 1000 cas confirmés
 
-
-
 <table>
 <caption>Nombre de jours entre les 1000 premiers cas confirmés et différentes mesures</caption>
  <thead>
@@ -873,14 +862,6 @@ Il convient de conclure en affirmant que cette comparaison des délais ne saurai
    <td style="text-align:right;"> -3 </td>
    <td style="text-align:right;"> 1 </td>
    <td style="text-align:right;"> 0 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Czech Republic </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
   </tr>
   <tr>
    <td style="text-align:left;"> France </td>
