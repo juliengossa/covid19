@@ -119,7 +119,7 @@ ggplot(covid.dates, aes(x=Ref,y=Date.ref)) +
               data = filter(covid.dates,CountryName %in% countries.sel),
               shape=23, size=5) +
   scale_x_discrete(
-    limits = c("ConfirmedCases_1000", "ConfirmedDeaths_10", "ConfirmedDeaths_1", "ConfirmedCases_10"),
+    limits = c("ConfirmedCases_01000", "ConfirmedDeaths_00010", "ConfirmedDeaths_00001", "ConfirmedCases_00010"),
     labels = c("1000 cas confirmés", "10 décès confirmés", "1er décès confirmé", "10 cas confirmés")) +
     #labels = c("10 cas confirmés","1er décès confirmé")) +
   coord_flip() +
@@ -143,7 +143,7 @@ ggplot(covid.dates.norm, aes(x=Ref,y=Date.ref)) +
               data = filter(covid.dates.norm, CountryName %in% countries.sel),
               shape=23, size=5) +
   scale_x_discrete(
-    limits = c("ConfirmedCases_1000", "ConfirmedDeaths_10", "ConfirmedDeaths_1", "ConfirmedCases_10"),
+    limits = c("ConfirmedCases_01000", "ConfirmedDeaths_00010", "ConfirmedDeaths_00001", "ConfirmedCases_00010"),
     labels = c("1000 cas confirmés", "10 décès confirmés", "1er décès confirmé", "10 cas confirmés")) +
     #labels = c("10 cas confirmés","1er décès confirmé")) +
   coord_flip() +

@@ -1,5 +1,4 @@
 library(tidyverse)
-library(gganimate)
 
 
 countries <- c("Austria", "Belgium", "Czech Republic", "France", 
